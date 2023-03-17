@@ -186,6 +186,7 @@ const generateSchemeAttributeType = (
 ) => {
   switch (attribute.type) {
     case 'string':
+    case 'email':
     case 'password':
     case 'text':
     case 'richtext':
@@ -228,8 +229,10 @@ const generateSchemeAttributeNativeType = (
   attribute: CollationTypeAttribute,
 ) => {
   switch (attribute.type) {
-    case 'string': {
-      let txt = '@db.VarChar(255)';
+    case 'string':
+    case 'email': {
+      let txt =
+        attribute.type === 'email' ? '@db.VarChar(128)' : '@db.VarChar(255)';
       const attributeStr = attribute as CollationTypeAttributeString;
       if (attributeStr.maxLength) {
         txt = `@db.VarChar(${attributeStr.maxLength})`;

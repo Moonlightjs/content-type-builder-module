@@ -13,6 +13,7 @@ export class CollationTypeOptions {
 
 export type CollationTypeAttributeTypeCommon =
   | 'string'
+  | 'email'
   | 'text'
   | 'password'
   | 'richtext'

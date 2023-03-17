@@ -1098,6 +1098,7 @@ import {
   IsNumber,
   IsOptional,
   IsString,
+  IsEmail,
   IsUUID,
   Matches,
   Max,
@@ -1287,6 +1288,7 @@ const generateTypescriptType = (
   let type = '';
   switch (attribute.type) {
     case 'string':
+    case 'email':
     case 'password':
     case 'text':
     case 'richtext':
@@ -1334,6 +1336,7 @@ const generateOpenApiType = (
 ) => {
   switch (attribute.type) {
     case 'string':
+    case 'email':
     case 'password':
     case 'text':
     case 'richtext':
@@ -1378,6 +1381,19 @@ const generateValidateType = (
         attrStr.maxLength ?? 255
       })${attrStr.minLength ? `\n@MinLength(${attrStr.minLength})` : ''}
 @IsString()`;
+    }
+    case 'password': {
+      return `@MaxLength(255)
+@IsString()`;
+    }
+    case 'email': {
+      const attrStr = attribute as CollationTypeAttributeString;
+      return `${
+        attrStr.regex ? `@Matches(${new RegExp(attrStr.regex)})\n` : ''
+      }${attrStr.required ? '@IsNotEmpty()\n' : ''}@MaxLength(${
+        attrStr.maxLength ?? 255
+      })${attrStr.minLength ? `\n@MinLength(${attrStr.minLength})` : ''}
+@IsEmail()`;
     }
     case 'password': {
       return `@MaxLength(255)

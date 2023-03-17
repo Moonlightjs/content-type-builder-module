@@ -77,7 +77,7 @@ export class ContentTypeBuilderService implements OnModuleInit {
     if (!(data && data.contentTypesSchema)) {
       throw new NotFoundException();
     }
-    return data.contentTypesSchema;
+    return data.contentTypesSchema as unknown as Record<string, CollationType>;
   }
 
   async onModuleInit() {
