@@ -1,0 +1,8 @@
+{
+  "files": [
+    "./prisma/schemas/*.prisma",
+    "./prisma/content-type.prisma",
+    "./node_modules/@moonlightjs/admin-user-module/prisma/schema.prisma"
+  ],
+  "output": "./prisma/schema.prisma"
+}
