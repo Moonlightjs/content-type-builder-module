@@ -143,6 +143,10 @@ export class ContentTypeBuilderService implements OnModuleInit {
     }
     const contentTypesSchema: Record<string, CollationType> =
       data.contentTypesSchema as unknown as Record<string, CollationType>;
+
+    if (!(uid in contentTypesSchema)) {
+      throw new NotFoundException('content type not found');
+    }
     const contentType: CollationType = {
       attributes: input.attributes,
       collectionName: input.collectionName,
@@ -173,7 +177,10 @@ export class ContentTypeBuilderService implements OnModuleInit {
     } else {
       contentTypesSchema = {};
     }
-    const uid = `api::${camelCase(input.collectionName)}`;
+    const uid = `api::${paramCase(input.collectionName)}`;
+    if (uid in contentTypesSchema) {
+      throw new BadRequestException('Content type already defined');
+    }
     const contentType: CollationType = {
       attributes: input.attributes,
       collectionName: input.collectionName,

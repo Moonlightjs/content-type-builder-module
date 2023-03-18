@@ -54,8 +54,8 @@ export class CollationTypeAttributeCommonBase extends CollationTypeAttributeBase
 
 export class CollationTypeAttributeString extends CollationTypeAttributeCommonBase {
   public regex?: Nullable<string>;
-  public minLength: number;
-  public maxLength: number;
+  public minLength: Nullable<number>;
+  public maxLength: Nullable<number>;
   public default: string;
 }
 
@@ -65,12 +65,9 @@ export class CollationTypeAttributeNumber extends CollationTypeAttributeCommonBa
   public default: number;
 }
 
-export class CollationTypeAttributeDecimal extends CollationTypeAttributeCommonBase {
-  public min: number;
-  public max: number;
+export class CollationTypeAttributeDecimal extends CollationTypeAttributeNumber {
   public precision: number;
   public scale: number;
-  public default: number;
 }
 
 export class CollationTypeAttributeBoolean extends CollationTypeAttributeCommonBase {

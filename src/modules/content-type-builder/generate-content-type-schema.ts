@@ -317,35 +317,35 @@ const generateSchemeAttributeNativeType = (
     case 'json':
       return '@db.JsonB';
     case 'date': {
-      let txt = '@db.Date';
-      const attributeBoolean = attribute as CollationTypeAttributeDate;
-      if (attributeBoolean.unique) {
+      let txt = '@db.Date()';
+      const attributeDate = attribute as CollationTypeAttributeDate;
+      if (attributeDate.unique) {
         txt += ' @unique';
       }
-      if (attributeBoolean.default) {
-        txt += ` @default(${attributeBoolean.default})`;
+      if (attributeDate.default) {
+        txt += ` @default("${attributeDate.default}")`;
       }
       return txt;
     }
     case 'datetime': {
       let txt = '@db.Timestamp()';
-      const attributeBoolean = attribute as CollationTypeAttributeDate;
-      if (attributeBoolean.unique) {
+      const attributeDateTime = attribute as CollationTypeAttributeDate;
+      if (attributeDateTime.unique) {
         txt += ' @unique';
       }
-      if (attributeBoolean.default) {
-        txt += ` @default(${attributeBoolean.default})`;
+      if (attributeDateTime.default) {
+        txt += ` @default("${attributeDateTime.default}")`;
       }
       return txt;
     }
     case 'time': {
       let txt = '@db.Time()';
-      const attributeBoolean = attribute as CollationTypeAttributeDate;
-      if (attributeBoolean.unique) {
+      const attributeTime = attribute as CollationTypeAttributeDate;
+      if (attributeTime.unique) {
         txt += ' @unique';
       }
-      if (attributeBoolean.default) {
-        txt += ` @default(${attributeBoolean.default})`;
+      if (attributeTime.default) {
+        txt += ` @default("${attributeTime.default}")`;
       }
       return txt;
     }
@@ -356,7 +356,7 @@ const generateSchemeAttributeNativeType = (
         txt += ' @unique';
       }
       if (attributeEnum.default) {
-        txt += ` @default(${attributeEnum.default})`;
+        txt += ` @default("${attributeEnum.default}")`;
       }
       return txt;
     case 'relation':
