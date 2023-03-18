@@ -10,9 +10,9 @@ import {
   CollationTypeAttributeString,
 } from '@modules/content-type-builder/collation-type';
 import * as fs from 'fs-extra';
-
 import { BadRequestException } from '@nestjs/common';
 import { camelCase, pascalCase } from 'change-case';
+import * as moment from 'moment';
 
 export const generateContentTypeSchema = (
   contentTypesSchema: Record<string, CollationType>,
@@ -323,7 +323,11 @@ const generateSchemeAttributeNativeType = (
         txt += ' @unique';
       }
       if (attributeDate.default) {
-        txt += ` @default("${attributeDate.default}")`;
+        const date = new Date(attributeDate.default);
+        date.setHours(0);
+        date.setMinutes(0);
+        date.setSeconds(0);
+        txt += ` @default("${date.toISOString()}")`;
       }
       return txt;
     }
@@ -334,7 +338,9 @@ const generateSchemeAttributeNativeType = (
         txt += ' @unique';
       }
       if (attributeDateTime.default) {
-        txt += ` @default("${attributeDateTime.default}")`;
+        txt += ` @default("${new Date(
+          attributeDateTime.default,
+        ).toISOString()}")`;
       }
       return txt;
     }
@@ -345,7 +351,8 @@ const generateSchemeAttributeNativeType = (
         txt += ' @unique';
       }
       if (attributeTime.default) {
-        txt += ` @default("${attributeTime.default}")`;
+        const momentTime = moment(attributeTime.default, 'HH:mm:ss');
+        txt += ` @default("${momentTime.toISOString()}")`;
       }
       return txt;
     }
