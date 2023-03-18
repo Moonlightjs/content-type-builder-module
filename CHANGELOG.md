@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.1-beta.3](https://github.com/Moonlightjs/content-type-builder-module/compare/v1.0.1-beta.2...v1.0.1-beta.3) (2023-03-18)
+
+
+### Bug Fixes
+
+* :bug: bug default value for datetime date time ([8724588](https://github.com/Moonlightjs/content-type-builder-module/commit/87245884e706f469c9bcecbcecc12a9fce4bb776))
+
 ### [1.0.1-beta.2](https://github.com/Moonlightjs/content-type-builder-module/compare/v1.0.1-beta.1...v1.0.1-beta.2) (2023-03-18)
 
 
