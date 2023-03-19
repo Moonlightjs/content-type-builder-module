@@ -1,6 +1,6 @@
 {
   "name": "@moonlightjs/content-type-builder-module",
-  "version": "1.0.1-beta.3",
+  "version": "1.0.1-beta.4",
   "main": "index.js",
   "types": "index.d.ts",
   "repository": {
@@ -19,11 +19,11 @@
   "description": "",
   "license": "ISC",
   "np": {
-		"yarn": false,
-		"contents": "module",
+    "yarn": false,
+    "contents": "module",
     "yolo": false,
     "publish": false
-	},
+  },
   "publishConfig": {
     "registry": "https://registry.npmjs.org"
   },
