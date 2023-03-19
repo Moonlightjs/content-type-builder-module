@@ -163,7 +163,7 @@ export class ContentTypeBuilderService implements OnModuleInit {
       uid,
     };
     await this.process(uid, contentType, contentTypesSchema, data, true);
-    this.shutdown();
+    // this.shutdown();
   }
 
   async create(input: CreateContentTypeBuilderInput) {
@@ -198,7 +198,7 @@ export class ContentTypeBuilderService implements OnModuleInit {
     };
 
     data = await this.process(uid, contentType, contentTypesSchema, data);
-    this.shutdown();
+    // this.shutdown();
     return data;
   }
 
@@ -215,7 +215,7 @@ export class ContentTypeBuilderService implements OnModuleInit {
     } else {
       throw new NotFoundException(`Not found content type ${uid}`);
     }
-    this.shutdown();
+    // this.shutdown();
   }
 
   async process(
@@ -343,6 +343,12 @@ export class ContentTypeBuilderService implements OnModuleInit {
       '--force',
     ]);
 
+    const execPrismaGenerate = await execPromise(
+      `cd ${rootFolder} && npm run prisma generate`,
+    );
+    console.log('stdout:', execPrismaGenerate.stdout);
+    console.log('stderr:', execPrismaGenerate.stderr);
+
     const execFormat = await execPromise(`cd ${rootFolder} && npm run format`);
 
     console.log('stdout:', execFormat.stdout);
@@ -417,6 +423,12 @@ export class ContentTypeBuilderService implements OnModuleInit {
       `delete-${paramCase(contentType.collectionName)}-model`,
       '--force',
     ]);
+
+    const execPrismaGenerate = await execPromise(
+      `cd ${rootFolder} && npm run prisma generate`,
+    );
+    console.log('stdout:', execPrismaGenerate.stdout);
+    console.log('stderr:', execPrismaGenerate.stderr);
 
     const execFormat = await execPromise(`cd ${rootFolder} && npm run format`);
 
