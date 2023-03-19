@@ -134,6 +134,11 @@ export class ContentTypeBuilderService implements OnModuleInit {
         },
       });
     }
+    const execPrismaGenerate = await execPromise(
+      `cd ${rootFolder} && npm run prisma generate`,
+    );
+    console.log('stdout:', execPrismaGenerate.stdout);
+    console.log('stderr:', execPrismaGenerate.stderr);
   }
 
   async update(uid: string, input: UpdateContentTypeBuilderInput) {
@@ -343,12 +348,6 @@ export class ContentTypeBuilderService implements OnModuleInit {
       '--force',
     ]);
 
-    const execPrismaGenerate = await execPromise(
-      `cd ${rootFolder} && npm run prisma generate`,
-    );
-    console.log('stdout:', execPrismaGenerate.stdout);
-    console.log('stderr:', execPrismaGenerate.stderr);
-
     const execFormat = await execPromise(`cd ${rootFolder} && npm run format`);
 
     console.log('stdout:', execFormat.stdout);
@@ -423,12 +422,6 @@ export class ContentTypeBuilderService implements OnModuleInit {
       `delete-${paramCase(contentType.collectionName)}-model`,
       '--force',
     ]);
-
-    const execPrismaGenerate = await execPromise(
-      `cd ${rootFolder} && npm run prisma generate`,
-    );
-    console.log('stdout:', execPrismaGenerate.stdout);
-    console.log('stderr:', execPrismaGenerate.stderr);
 
     const execFormat = await execPromise(`cd ${rootFolder} && npm run format`);
 
