@@ -18,7 +18,17 @@
   },
   "description": "",
   "license": "ISC",
+  "np": {
+		"yarn": false,
+		"contents": "module",
+    "yolo": false,
+    "publish": false
+	},
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org"
+  },
   "scripts": {
+    "release-np": "np --no-yarn --yolo --no-publish && npm run module && cd module",
     "release": "standard-version && git push --follow-tags && npm run module && cd module && npm publish --access public",
     "release-alpha": "standard-version --prerelease alpha && git push --follow-tags && npm run module && cd module && npm publish --access public",
     "release-beta": "standard-version --prerelease beta && git push --follow-tags && npm run module && cd module && npm publish --access public",
@@ -51,7 +61,8 @@
     "module-alias": "^2.2.2",
     "moment": "^2.29.4",
     "reflect-metadata": "^0.1.13",
-    "rxjs": "^7.8.0"
+    "rxjs": "^7.8.0",
+    "np": "*"
   },
   "devDependencies": {
     "@nestjs/cli": "^7.5.1",
